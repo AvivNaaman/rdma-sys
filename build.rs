@@ -1,5 +1,6 @@
 use std::env;
 use std::path::Path;
+use bindgen::Formatter;
 
 fn link_rdma_core(lib_name: &str, pkg_name: &str, version: &str, include_paths: &mut Vec<String>) {
     let result: _ = pkg_config::Config::new()
@@ -148,7 +149,7 @@ fn main() {
         //.generate_inline_functions(true)
         //.default_macro_constant_type(bindgen::MacroTypeVariation::Unsigned)
         .prepend_enum_name(false)
-        .rustfmt_bindings(true)
+        .formatter(Formatter::Rustfmt)
         .size_t_is_usize(true)
         .disable_untagged_union()
         .generate()
